@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,
+                 initial-scale=1.0,
+                 maximum-scale=1.0,
+                 user-scalable=no"
+    >
+
+    <title>Pinewood: The Woods</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         GAME
+         ===================================================== -->
+
+    <main id="game">
+
+        <!-- WORLD CANVAS -->
+
+        <canvas
+            id="gameCanvas"
+            width="960"
+            height="540"
+        ></canvas>
+
+
+        <!-- =================================================
+             HUD
+             ================================================= -->
+
+        <div id="hud">
+
+            <div class="playerHud">
+
+                <div class="hudLabel">
+                    HEALTH
+                </div>
+
+                <div class="bar">
+                    <div
+                        id="healthFill"
+                        class="healthFill"
+                    ></div>
+                </div>
+
+                <div
+                    id="healthNumber"
+                    class="hudNumber"
+                >
+                    100 / 100
+                </div>
+
+
+                <div class="hudLabel">
+                    STAMINA
+                </div>
+
+                <div class="bar">
+                    <div
+                        id="staminaFill"
+                        class="staminaFill"
+                    ></div>
+                </div>
+
+                <div
+                    id="staminaNumber"
+                    class="hudNumber"
+                >
+                    100 / 100
+                </div>
+
+            </div>
+
+
+            <div
+                id="locationText"
+                class="locationText"
+            >
+                PINEWOOD WOODS
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             EXPLORATION MESSAGE
+             ================================================= -->
+
+        <div
+            id="interactionMessage"
+            class="interactionMessage"
+        ></div>
+
+
+        <!-- =================================================
+             FADE
+             ================================================= -->
+
+        <div
+            id="screenFade"
+            class="screenFade"
+        ></div>
+
+
+        <!-- =================================================
+             BATTLE SCREEN
+             ================================================= -->
+
+        <section
+            id="battleScreen"
+            class="battleScreen"
+        >
+
+            <div class="battleTop">
+
+                <div
+                    id="enemyName"
+                    class="enemyName"
+                >
+                    UNKNOWN
+                </div>
+
+                <div class="enemyHealthBar">
+
+                    <div
+                        id="enemyHealthFill"
+                        class="enemyHealthFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Monster illustration area -->
+
+            <div
+                id="enemyArtwork"
+                class="enemyArtwork"
+            >
+                SOMETHING IS WATCHING
+            </div>
+
+
+            <!-- Battle controls -->
+
+            <div class="battleBottom">
+
+                <div
+                    id="battleMessage"
+                    class="battleMessage"
+                >
+                    What will you do?
+                </div>
+
+
+                <div class="battleButtons">
+
+                    <button
+                        id="quickAttack"
+                        type="button"
+                    >
+                        QUICK ATTACK
+                    </button>
+
+                    <button
+                        id="heavyAttack"
+                        type="button"
+                    >
+                        HEAVY ATTACK
+                    </button>
+
+                    <button
+                        id="specialAttack"
+                        type="button"
+                    >
+                        SPECIAL ATTACK
+                    </button>
+
+                    <button
+                        id="restButton"
+                        type="button"
+                    >
+                        REST
+                    </button>
+
+                    <button
+                        id="runButton"
+                        type="button"
+                    >
+                        RUN
+                    </button>
+
+                </div>
+
+
+                <div class="playerBattleStats">
+
+                    <div>
+                        HEALTH
+                    </div>
+
+                    <div id="battlePlayerHealth">
+                        100
+                    </div>
+
+                    <div>
+                        STAMINA
+                    </div>
+
+                    <div id="battlePlayerStamina">
+                        100
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CUTSCENE
+             ================================================= -->
+
+        <section
+            id="cutscene"
+            class="cutscene"
+        >
+
+            <div
+                id="cutsceneText"
+                class="cutsceneText"
+            ></div>
+
+            <button
+                id="cutsceneButton"
+                type="button"
+            >
+                CONTINUE
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             CLUE / INVESTIGATION
+             ================================================= -->
+
+        <section
+            id="clueScreen"
+            class="clueScreen"
+        >
+
+            <article
+                id="clueContent"
+                class="clueContent"
+            ></article>
+
+            <button
+                id="closeClue"
+                type="button"
+            >
+                CLOSE
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             DEATH SCREEN
+             ================================================= -->
+
+        <section
+            id="deathScreen"
+            class="deathScreen"
+        >
+
+            <h1>
+                YOU DIED
+            </h1>
+
+            <p>
+                The woods have claimed another visitor.
+            </p>
+
+            <button
+                id="restartButton"
+                type="button"
+            >
+                RETURN TO THE WOODS
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         GAME SCRIPTS
+
+         game.js MUST load first.
+         content.js loads second because it adds the
+         additional systems to the main game.
+         ===================================================== -->
+
+    <script src="game.js"></script>
+    <script src="content.js"></script>
+
+</body>
+</html>
