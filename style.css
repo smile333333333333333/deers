@@ -1,0 +1,943 @@
+/* =========================================================
+   PINEWOOD: THE WOODS
+   FILE 3 — VISUAL STYLE
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #080b09;
+    color: #d8d6c7;
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================================
+   GAME CONTAINER
+   ========================================================= */
+
+#game {
+    position: relative;
+    width: min(960px, 100vw);
+    height: min(540px, 100vh);
+    overflow: hidden;
+    background: #111710;
+    box-shadow:
+        0 0 50px rgba(0, 0, 0, 0.9),
+        inset 0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+
+/* =========================================================
+   CANVAS
+   ========================================================= */
+
+#gameCanvas {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+
+    background: #172419;
+}
+
+
+/* =========================================================
+   CRT / OLD CAMCORDER EFFECT
+   ========================================================= */
+
+#game::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.025) 0px,
+            rgba(255,255,255,0.025) 1px,
+            rgba(0,0,0,0.025) 2px,
+            rgba(0,0,0,0.025) 4px
+        );
+
+    mix-blend-mode: overlay;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   START SCREEN
+   ========================================================= */
+
+#startScreen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(38, 57, 39, 0.55),
+            rgba(3, 6, 4, 0.98) 75%
+        );
+}
+
+
+.titleBox {
+    width: min(650px, 90vw);
+
+    text-align: center;
+
+    padding: 50px 30px;
+
+    border:
+        1px solid
+        rgba(150, 157, 119, 0.22);
+
+    background:
+        rgba(7, 12, 8, 0.72);
+
+    box-shadow:
+        0 0 70px rgba(0, 0, 0, 0.9);
+}
+
+
+.smallTitle {
+    letter-spacing: 7px;
+    font-size: 12px;
+    color: #777d68;
+}
+
+
+.titleBox h1 {
+    margin:
+        15px
+        0
+        4px;
+
+    font-size:
+        clamp(40px, 9vw, 86px);
+
+    letter-spacing: 12px;
+
+    font-weight: normal;
+
+    color: #c5c8a8;
+
+    text-shadow:
+        0 0 20px rgba(170, 180, 120, 0.18);
+}
+
+
+.titleBox p {
+    color: #777c6c;
+}
+
+
+.titleBox .warning {
+    margin-top: 40px;
+
+    color: #8d756c;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+    border: 1px solid #656b58;
+
+    background: #171d16;
+
+    color: #c9ccb9;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    cursor: pointer;
+
+    transition:
+        background 0.12s,
+        color 0.12s,
+        border-color 0.12s,
+        transform 0.12s;
+}
+
+
+button:hover {
+    background: #30392b;
+
+    color: #f0eee0;
+
+    border-color: #a2a88d;
+}
+
+
+button:active {
+    transform: translateY(2px);
+}
+
+
+#startButton {
+    margin-top: 30px;
+
+    padding:
+        13px
+        55px;
+
+    letter-spacing: 5px;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   HUD
+   ========================================================= */
+
+#hud {
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+    right: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    pointer-events: none;
+
+    z-index: 20;
+}
+
+
+.playerHud {
+    width: 190px;
+
+    padding: 10px;
+
+    background:
+        rgba(5, 8, 5, 0.76);
+
+    border:
+        1px solid
+        rgba(160, 165, 130, 0.22);
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+.hudLabel {
+    margin-top: 2px;
+
+    color: #858b77;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+.bar {
+    height: 7px;
+
+    margin:
+        4px
+        0
+        3px;
+
+    background: #090b09;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+
+.healthFill,
+.staminaFill {
+    height: 100%;
+
+    width: 100%;
+
+    transition:
+        width 0.15s
+        ease-out;
+}
+
+
+.healthFill {
+    background: #813c38;
+}
+
+
+.staminaFill {
+    background: #697a4d;
+}
+
+
+.hudNumber {
+    font-size: 9px;
+
+    color: #9a9d8e;
+
+    margin-bottom: 7px;
+}
+
+
+.locationText {
+    padding:
+        8px
+        12px;
+
+    background:
+        rgba(5, 8, 5, 0.7);
+
+    border:
+        1px solid
+        rgba(160, 165, 130, 0.18);
+
+    color: #8f957e;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================================
+   INTERACTION MESSAGE
+   ========================================================= */
+
+.interactionMessage {
+    position: absolute;
+
+    left: 50%;
+    bottom: 30px;
+
+    transform: translateX(-50%);
+
+    display: none;
+
+    padding:
+        9px
+        18px;
+
+    background:
+        rgba(4, 6, 4, 0.88);
+
+    border:
+        1px solid
+        rgba(180, 184, 150, 0.28);
+
+    color: #d0d0bf;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    z-index: 50;
+}
+
+
+/* =========================================================
+   SCREEN FADE
+   ========================================================= */
+
+.screenFade {
+    position: absolute;
+    inset: 0;
+
+    z-index: 500;
+
+    pointer-events: none;
+
+    background: #000;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.6s ease;
+}
+
+
+/* =========================================================
+   BATTLE SCREEN
+   ========================================================= */
+
+.battleScreen {
+    position: absolute;
+    inset: 0;
+
+    z-index: 200;
+
+    display: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #292822 0%,
+            #121512 52%,
+            #050605 100%
+        );
+
+    animation:
+        battleAppear
+        0.35s
+        ease-out;
+}
+
+
+@keyframes battleAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   BATTLE TOP
+   ========================================================= */
+
+.battleTop {
+    position: absolute;
+
+    top: 18px;
+    left: 25px;
+    right: 25px;
+
+    z-index: 5;
+}
+
+
+.enemyName {
+    color: #c8c7b5;
+
+    font-size: 17px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+
+.enemyHealthBar {
+    width: 100%;
+    height: 9px;
+
+    background: #080908;
+
+    border:
+        1px solid
+        #4e5045;
+}
+
+
+.enemyHealthFill {
+    width: 100%;
+    height: 100%;
+
+    background: #773c3a;
+
+    transition:
+        width 0.2s
+        ease-out;
+}
+
+
+/* =========================================================
+   ENEMY ARTWORK AREA
+   ========================================================= */
+
+.enemyArtwork {
+    position: absolute;
+
+    left: 50%;
+    top: 48%;
+
+    width: 70%;
+    height: 55%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #777d6d;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-align: center;
+
+    /*
+       File 2 draws the basic monster here.
+       File 3's visual effects make the area
+       feel like an illustrated encounter.
+    */
+
+    filter:
+        drop-shadow(
+            0 20px 20px
+            rgba(0,0,0,0.7)
+        );
+}
+
+
+/* =========================================================
+   BATTLE BOTTOM
+   ========================================================= */
+
+.battleBottom {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    min-height: 145px;
+
+    padding:
+        12px
+        18px
+        15px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(3,4,3,0.98),
+            rgba(8,10,8,0.91)
+        );
+
+    border-top:
+        1px solid
+        rgba(170,170,145,0.2);
+}
+
+
+.playerBattleStats {
+    position: absolute;
+
+    left: 18px;
+    top: 15px;
+
+    width: 110px;
+
+    color: #878d7c;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+.playerBattleStats div:nth-child(even) {
+    color: #d0cdbd;
+
+    margin-bottom: 4px;
+}
+
+
+.battleMessage {
+    text-align: center;
+
+    min-height: 30px;
+
+    color: #bbbcae;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    padding:
+        2px
+        140px;
+}
+
+
+/* =========================================================
+   BATTLE BUTTONS
+   ========================================================= */
+
+.battleButtons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 8px;
+}
+
+
+.battleButtons button {
+    min-width: 115px;
+
+    padding:
+        8px
+        10px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+#quickAttack {
+    border-color: #68745c;
+}
+
+
+#heavyAttack {
+    border-color: #756557;
+}
+
+
+#specialAttack {
+    border-color: #7d665f;
+}
+
+
+#restButton {
+    border-color: #596c58;
+}
+
+
+#runButton {
+    border-color: #5e6160;
+}
+
+
+/* =========================================================
+   CUTSCENES
+   ========================================================= */
+
+.cutscene {
+    position: absolute;
+    inset: 0;
+
+    z-index: 400;
+
+    display: none;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    flex-direction: column;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.05),
+            rgba(0,0,0,0.9)
+        );
+}
+
+
+.cutsceneText {
+    width: min(800px, 90%);
+
+    padding:
+        20px
+        25px;
+
+    background:
+        rgba(3,5,3,0.9);
+
+    border:
+        1px solid
+        rgba(170,170,145,0.25);
+
+    color: #c8c7b8;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-bottom: 10px;
+}
+
+
+#cutsceneButton {
+    padding:
+        8px
+        25px;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CLUE SCREEN
+   ========================================================= */
+
+.clueScreen {
+    position: absolute;
+    inset: 0;
+
+    z-index: 300;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(2,3,2,0.94);
+}
+
+
+.clueContent {
+    width: min(700px, 90%);
+
+    max-height: 75%;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    background:
+        #d4ccb0;
+
+    color: #27271f;
+
+    border:
+        4px
+        double
+        #57533f;
+
+    box-shadow:
+        0 0 80px
+        rgba(0,0,0,0.9);
+
+    font-family:
+        Georgia,
+        serif;
+
+    line-height: 1.6;
+}
+
+
+#closeClue {
+    position: absolute;
+
+    bottom: 8%;
+
+    padding:
+        8px
+        25px;
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+
+/* =========================================================
+   DEATH SCREEN
+   ========================================================= */
+
+.deathScreen {
+    position: absolute;
+    inset: 0;
+
+    z-index: 900;
+
+    display: none;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(65,18,18,0.32),
+            #030403 70%
+        );
+}
+
+
+.deathScreen h1 {
+    margin: 0;
+
+    font-size:
+        clamp(40px, 8vw, 80px);
+
+    font-weight: normal;
+
+    letter-spacing: 10px;
+
+    color: #a66d67;
+
+    text-shadow:
+        0 0 30px
+        rgba(120,40,40,0.35);
+}
+
+
+.deathScreen p {
+    color: #76786d;
+
+    font-size: 12px;
+
+    margin:
+        15px
+        0
+        30px;
+}
+
+
+#restartButton {
+    padding:
+        10px
+        35px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   SMALL HORROR DETAILS
+   ========================================================= */
+
+#game::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 90px rgba(0,0,0,0.72),
+        inset 0 0 220px rgba(0,0,0,0.32);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .locationText {
+        display: none;
+    }
+
+    .playerHud {
+        width: 150px;
+    }
+
+    .battleMessage {
+        padding:
+            2px
+            110px;
+    }
+
+    .battleButtons button {
+        min-width: 90px;
+        padding: 7px;
+    }
+
+}
+
+
+@media (max-height: 500px) {
+
+    .battleBottom {
+        min-height: 125px;
+    }
+
+    .battleButtons {
+        gap: 4px;
+    }
+
+    .battleButtons button {
+        padding: 5px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY / FOCUS
+   ========================================================= */
+
+button:focus-visible {
+    outline:
+        2px solid
+        #aaaF8a;
+
+    outline-offset: 2px;
+  }
